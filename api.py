@@ -2,12 +2,14 @@
 import requests
 import datetime
 
-together_day = "2021-12-27"
-birthday = "2022-12-27"
-timeapi_url = 'http://api.k780.com/?app=life.time&appkey=50931&sign=63abd975f74ee880c3519656a7aa6c8e&format=json'
-weatherkey = '68206fb0bfa34673810ba2566817f6e9'
-locationpos = "116.42,39.85"
-# 116.42441411230848,39.853873059762655
+together_day = "xxxx-xx-xx"
+birthday = "xxxx-xx-xx"
+timeappkey = ""
+timesign = ""
+weatherkey = ''
+locationpos = "00.00,00.00"
+
+timeapi_url = 'http://api.k780.com/?app=life.time&appkey={}&sign={}&format=json'.format(timeappkey, timesign)
 now_weather_url = "https://devapi.qweather.com/v7/weather/now?key={}&location={}".format(weatherkey, locationpos)
 three_day_weather_url = "https://devapi.qweather.com/v7/weather/3d?key={}&location={}".format(weatherkey, locationpos)
 seven_day_weather_url = "https://devapi.qweather.com/v7/weather/7d?key={}&location={}".format(weatherkey, locationpos)
