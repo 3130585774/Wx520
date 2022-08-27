@@ -1,0 +1,8 @@
+今天天气： {{text.DATA}}💡 
+现在温度：{{temp.DATA}}°C🌡 
+体感温度：{{feelsLike.DATA}}°C 
+湿度是：{{humidity.DATA}}%💧 
+风向：{{windDir.DATA}} {{windScale.DATA}}级🌬
+观测时间{{updateTime.DATA}}
+我们在一起了{{together_day.DATA}}天🎎
+宝贝生日还有{{birthday.DATA}}天🎈🎉
