@@ -1,22 +1,29 @@
 # -*- coding:utf-8 -*-
 import requests
 import datetime
+import config
 
-together_day = "xxxx-xx-xx"
-birthday = "xxxx-xx-xx"
-timeappkey = ""
-timesign = ""
-weatherkey = ''
-locationpos = "00.00,00.00"
+locationID = "00.00,00.00"
 
-timeapi_url = 'http://api.k780.com/?app=life.time&appkey={}&sign={}&format=json'.format(timeappkey, timesign)
-now_weather_url = "https://devapi.qweather.com/v7/weather/now?key={}&location={}".format(weatherkey, locationpos)
-three_day_weather_url = "https://devapi.qweather.com/v7/weather/3d?key={}&location={}".format(weatherkey, locationpos)
-seven_day_weather_url = "https://devapi.qweather.com/v7/weather/7d?key={}&location={}".format(weatherkey, locationpos)
+timeapi_url = 'http://api.k780.com/?app=life.time&appkey={}&sign={}&format=json'.format(config.timeappkey,
+                                                                                        config.timesign)
+now_weather_url = "https://devapi.qweather.com/v7/weather/+9+now?key={}&location={}".format(config.weatherkey,
+                                                                                            locationID)
+# three_day_weather_url = "https://devapi.qweather.com/v7/weather/3d?key={}&location={}".format(weatherkey, locationID)
+# seven_day_weather_url = "https://devapi.qweather.com/v7/weather/7d?key={}&location={}".format(weatherkey, locationID)
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) '
                   'Chrome/87.0.42''80.67 Safari/537.36'
 }
+
+
+def get_city_ID():
+    get_city_ID_url = "http://geoapi.qweather.com/v2/city/lookup?key={}&location={}".format(config.weatherkey,
+                                                                                            config.location)
+    print(get_city_ID_url)
+    re = requests.get(get_city_ID_url, headers=headers).json
+    print(re)
+    # return re
 
 
 def get_now_weather():
@@ -79,13 +86,16 @@ def get_date():
 
 def get_together_days():
     date1 = datetime.datetime.strptime(get_date(), "%Y-%m-%d")
-    date2 = datetime.datetime.strptime(together_day, "%Y-%m-%d")
+    date2 = datetime.datetime.strptime(config.together_day, "%Y-%m-%d")
     num = date1 - date2
     return num.days
 
 
 def get_birthday():
     date1 = datetime.datetime.strptime(get_date(), "%Y-%m-%d")
-    date2 = datetime.datetime.strptime(birthday, "%Y-%m-%d")
+    date2 = datetime.datetime.strptime(config.birthday, "%Y-%m-%d")
     num = date2 - date1
     return num.days
+
+
+get_city_ID()
